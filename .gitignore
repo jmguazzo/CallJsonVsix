@@ -1,0 +1,5 @@
+*.dll
+CallJson/bin/*
+CallJson/obj/*
+packages/
+*.vsix
