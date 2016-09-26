@@ -4,3 +4,4 @@ CallJson/obj/*
 packages/
 *.vsix
 *.suo
+/TestUserControl/bin/Debug
