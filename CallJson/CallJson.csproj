@@ -57,6 +57,11 @@
     <Compile Include="ControlCallJson.Designer.cs">
       <DependentUpon>ControlCallJson.cs</DependentUpon>
     </Compile>
+    <Compile Include="Images.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Images.resx</DependentUpon>
+    </Compile>
     <Compile Include="JsonControler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ToolWindow.cs" />
@@ -65,6 +70,11 @@
       <DependentUpon>ToolWindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToolWindowPackage.cs" />
+    <Compile Include="VSPackage.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VSPackage.resx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
@@ -74,13 +84,29 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="index.html" />
+    <None Include="Resources\NewClass_16x.png" />
+    <None Include="Resources\OpenFolder_32x.png" />
+    <Content Include="hockey-mask.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="hockey-mask_32.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="licence.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <IncludeInVSIX>true</IncludeInVSIX>
+    </Content>
+    <Content Include="Resources\hockey-mask_16.png" />
     <Content Include="Resources\Package.ico" />
+    <None Include="Resources\Run_32x.png" />
+    <None Include="Resources\Save_32x.png" />
     <Content Include="Resources\ToolWindowCommand.png" />
     <Content Include="Resources\ToolWindowPackage.ico" />
-    <Content Include="stylesheet.css" />
     <VSCTCompile Include="ToolWindowPackage.vsct">
       <ResourceName>Menus.ctmenu</ResourceName>
+      <SubType>Designer</SubType>
     </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
@@ -204,9 +230,15 @@
     <EmbeddedResource Include="ControlCallJson.resx">
       <DependentUpon>ControlCallJson.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Images.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
       <ManifestResourceName>VSPackage</ManifestResourceName>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>VSPackage.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

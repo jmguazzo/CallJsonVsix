@@ -82,6 +82,7 @@ namespace CallJson
         public static void Initialize(Package package)
         {
             Instance = new ToolWindowCommand(package);
+            
         }
 
         /// <summary>

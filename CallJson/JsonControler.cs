@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
+using System.Threading;
 
 namespace CallJson
 {
-    static class  JsonControler
+    static class JsonControler
     {
         static class Methods
         {
@@ -38,7 +39,7 @@ namespace CallJson
 
         static JsonControler()
         {
-           
+
         }
         public static string GET(string uri, Dictionary<string, string> headers)
         {
@@ -49,7 +50,7 @@ namespace CallJson
 
         public static string POST(string uri, Dictionary<string, string> headers, string body)
         {
-            return ExecuteRequest(uri, headers,body, Methods.Post);
+            return ExecuteRequest(uri, headers, body, Methods.Post);
         }
 
         public static string PUT(string uri, Dictionary<string, string> headers, string body)
@@ -63,11 +64,12 @@ namespace CallJson
         {
             return ExecuteRequest(uri, headers, string.Empty, Methods.Delete);
         }
-        private static string ExecuteRequest(string uri,Dictionary<string,string> headers,
-           string body, Func<HttpClient,string,string,HttpResponseMessage> executionMethod)
+        private static string ExecuteRequest(string uri,
+            Dictionary<string, string> headers,
+            string body,
+            Func<HttpClient, string, string, HttpResponseMessage> executionMethod)
         {
             string result;
-
             using (var client = new HttpClient(new HttpClientHandler() { UseDefaultCredentials = true }))
             {
                 InitClient(client, headers);
@@ -77,8 +79,8 @@ namespace CallJson
             }
             return result;
         }
-        
-       
+
+
 
         private static string GetResultFrom(HttpResponseMessage response)
         {
@@ -95,7 +97,7 @@ namespace CallJson
 
         }
 
-        
+
 
         private static void InitClient(HttpClient client, Dictionary<string, string> headers)
         {
@@ -111,9 +113,20 @@ namespace CallJson
 
         private static string ConvertToJson(string jsonString)
         {
-            dynamic parsedJson = JsonConvert.DeserializeObject(jsonString);
-            return JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
+            string converted = jsonString;
+            try
+            {
+                dynamic parsedJson = JsonConvert.DeserializeObject(jsonString);
+                converted = JsonConvert.SerializeObject(parsedJson, Formatting.Indented);
 
+            }
+            catch (Exception ex)
+            {
+                converted = "JSON Error : " + ex.Message + Environment.NewLine +
+                    "Returned value : " + Environment.NewLine + converted;
+            }
+
+            return converted;
         }
     }
 }
