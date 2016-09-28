@@ -15,6 +15,7 @@ namespace CallJson
         private Cursor bakCursor;
         private const string JSON_FILTER = "Json file|*.json|Text file|*.txt|All files|*.*";
         private const string TEXT_FILTER = "Text file|*.txt|All files|*.*";
+        private FavoriteManager favoriteManager;
 
         enum Verbs
         {
@@ -140,8 +141,14 @@ namespace CallJson
         private void ControlCallJson_Load(object sender, EventArgs e)
         {
             ShowBodyItems();
+            InitFavorite();
         }
 
+        private void InitFavorite()
+        {
+            this.favoriteManager = new FavoriteManager();
+            favoriteManager.FillTreeView(trvFavorite);
+        }
 
         private void btnExec_Click(object sender, EventArgs e)
         {
@@ -260,6 +267,155 @@ namespace CallJson
 
         private void btnCreateJsonClass_Click(object sender, EventArgs e)
         {
+        }
+
+        private void trvFavorite_DoubleClick(object sender, EventArgs e)
+        {
+            if (trvFavorite.SelectedNode == null) return;
+            var favorite = trvFavorite.SelectedNode.Tag as Favorite;
+            if (favorite.IsFolder) return;
+
+            cmboURI.Text = favorite.Url;
+            txtJsonBody.Text = favorite.Body;
+
+        }
+
+        private void EditFavorite()
+        {
+            if (trvFavorite.SelectedNode == null) return;
+            var favorite = trvFavorite.SelectedNode.Tag as Favorite;
+
+            if (favorite == null) return ;
+
+            if (favorite.IsFolder)
+            {
+                trvFavorite.SelectedNode.BeginEdit();
+            }
+            else
+            {
+                frmManageFavorite frm = new frmManageFavorite();
+                frm.Init(favorite);
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    trvFavorite.SelectedNode.Text = favorite.Name;
+                    SaveFavorite();
+                }
+            }
+        }
+
+        private void SaveFavorite()
+        {
+            favoriteManager.SaveTreeView(trvFavorite);
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+            EditFavorite();
+
+        }
+
+        private void trvFavorite_AfterLabelEdit(object sender, NodeLabelEditEventArgs e)
+        {
+            if (e.Label == null) return;
+
+            var favorite = e.Node.Tag as Favorite;
+            if (favorite == null) return;
+
+            favorite.Name = e.Label;
+            SaveFavorite();
+        }
+
+        private void trvFavorite_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.F2)
+            {
+                if (!trvFavorite.SelectedNode.IsEditing)
+                {
+                    trvFavorite.SelectedNode.BeginEdit();
+                }
+            }
+
+        }
+
+        private void btnDeleteFavorite_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Are you sure ?", "Delete", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                if (trvFavorite.SelectedNode != null)
+                    trvFavorite.Nodes.Remove(trvFavorite.SelectedNode);
+            }
+        }
+
+        private void btnCreateFolder_Click(object sender, EventArgs e)
+        {
+
+            var node = AddNewFavorite(new Favorite() { Name = "New", IsFolder = true });
+            node.BeginEdit();
+        }
+
+        private TreeNode AddNewFavorite(Favorite favorite)
+        {
+            TreeNodeCollection parentCollection = trvFavorite.Nodes;
+            if (trvFavorite.SelectedNode != null)
+            {
+                var selectedFavorite = trvFavorite.SelectedNode.Tag as Favorite;
+                if (selectedFavorite != null && selectedFavorite.IsFolder)
+                {
+                    trvFavorite.SelectedNode.Expand();
+                    parentCollection = trvFavorite.SelectedNode.Nodes;
+                }
+            }
+            var node = favoriteManager.CreateNode(favorite);
+            parentCollection.Add(node);
+            return node;
+        }
+
+        private void btnAddFavorite_Click(object sender, EventArgs e)
+        {
+            Favorite favorite = new Favorite();
+            favorite.Name = "New";
+            favorite.Url = cmboURI.Text;
+            favorite.Body = txtJsonBody.Text;
+
+            frmManageFavorite frm = new frmManageFavorite();
+            frm.Init(favorite);
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                AddNewFavorite(favorite);
+                SaveFavorite();
+            }
+        }
+
+        private void trvFavorite_ItemDrag(object sender, ItemDragEventArgs e)
+        {
+            DoDragDrop(e.Item, DragDropEffects.Move);
+        }
+
+        private void trvFavorite_DragEnter(object sender, DragEventArgs e)
+        {
+            e.Effect = DragDropEffects.Move;
+        }
+
+        private void trvFavorite_DragDrop(object sender, DragEventArgs e)
+        {
+            TreeNode newNode;
+            if (e.Data.GetDataPresent("System.Windows.Forms.TreeNode", false))
+            {
+                Point pt = trvFavorite.PointToClient(new Point(e.X, e.Y));
+
+                var destination = trvFavorite.GetNodeAt(pt);
+
+                newNode = (TreeNode)e.Data.GetData("System.Windows.Forms.TreeNode");
+
+                if (destination.TreeView == newNode.TreeView && 
+                    ((Favorite)destination.Tag).IsFolder && 
+                    !destination.FullPath.StartsWith( newNode.FullPath))
+                {
+                    destination.Nodes.Add((TreeNode)newNode.Clone());
+                    trvFavorite.Nodes.Remove(newNode);
+                }
+            }
+
         }
     }
 }

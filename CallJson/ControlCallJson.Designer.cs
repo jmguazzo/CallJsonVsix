@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ControlCallJson));
             this.pnlAddress = new System.Windows.Forms.Panel();
             this.cmboURI = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
@@ -44,6 +46,7 @@
             this.stripBody = new System.Windows.Forms.ToolStrip();
             this.btnOpenBody = new System.Windows.Forms.ToolStripButton();
             this.btnSaveBody = new System.Windows.Forms.ToolStripButton();
+            this.lblNotAvailableGetAndDelete = new System.Windows.Forms.Label();
             this.tabPage8 = new System.Windows.Forms.TabPage();
             this.txtHeaders = new System.Windows.Forms.TextBox();
             this.toolStrip2 = new System.Windows.Forms.ToolStrip();
@@ -53,7 +56,15 @@
             this.txtResults = new System.Windows.Forms.TextBox();
             this.toolStrip3 = new System.Windows.Forms.ToolStrip();
             this.btnSaveResults = new System.Windows.Forms.ToolStripButton();
-            this.lblNotAvailableGetAndDelete = new System.Windows.Forms.Label();
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.trvFavorite = new System.Windows.Forms.TreeView();
+            this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.toolStrip1 = new System.Windows.Forms.ToolStrip();
+            this.btnAddFavorite = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnCreateFolder = new System.Windows.Forms.ToolStripButton();
+            this.btnEdit = new System.Windows.Forms.ToolStripButton();
+            this.btnDeleteFavorite = new System.Windows.Forms.ToolStripButton();
             this.pnlAddress.SuspendLayout();
             this.btnBar1.SuspendLayout();
             this.tabs.SuspendLayout();
@@ -63,17 +74,23 @@
             this.toolStrip2.SuspendLayout();
             this.tabResults.SuspendLayout();
             this.toolStrip3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
+            this.toolStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlAddress
             // 
+            this.pnlAddress.BackColor = System.Drawing.Color.WhiteSmoke;
             this.pnlAddress.Controls.Add(this.cmboURI);
             this.pnlAddress.Controls.Add(this.label1);
             this.pnlAddress.Controls.Add(this.btnBar1);
             this.pnlAddress.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlAddress.Location = new System.Drawing.Point(0, 0);
             this.pnlAddress.Name = "pnlAddress";
-            this.pnlAddress.Size = new System.Drawing.Size(696, 52);
+            this.pnlAddress.Size = new System.Drawing.Size(548, 52);
             this.pnlAddress.TabIndex = 0;
             // 
             // cmboURI
@@ -84,7 +101,7 @@
             this.cmboURI.FormattingEnabled = true;
             this.cmboURI.Location = new System.Drawing.Point(35, 0);
             this.cmboURI.Name = "cmboURI";
-            this.cmboURI.Size = new System.Drawing.Size(661, 21);
+            this.cmboURI.Size = new System.Drawing.Size(513, 21);
             this.cmboURI.TabIndex = 2;
             this.cmboURI.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmboURI_KeyDown);
             // 
@@ -101,6 +118,7 @@
             // 
             // btnBar1
             // 
+            this.btnBar1.BackColor = System.Drawing.Color.WhiteSmoke;
             this.btnBar1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btnBar1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnGET,
@@ -111,7 +129,7 @@
             this.btnExec});
             this.btnBar1.Location = new System.Drawing.Point(0, 27);
             this.btnBar1.Name = "btnBar1";
-            this.btnBar1.Size = new System.Drawing.Size(696, 25);
+            this.btnBar1.Size = new System.Drawing.Size(548, 25);
             this.btnBar1.TabIndex = 3;
             this.btnBar1.Text = "toolStrip1";
             // 
@@ -182,20 +200,20 @@
             this.tabs.Location = new System.Drawing.Point(0, 52);
             this.tabs.Name = "tabs";
             this.tabs.SelectedIndex = 0;
-            this.tabs.Size = new System.Drawing.Size(696, 326);
+            this.tabs.Size = new System.Drawing.Size(548, 326);
             this.tabs.TabIndex = 0;
             // 
             // tabPage9
             // 
+            this.tabPage9.BackColor = System.Drawing.Color.LightGray;
             this.tabPage9.Controls.Add(this.txtJsonBody);
             this.tabPage9.Controls.Add(this.stripBody);
             this.tabPage9.Controls.Add(this.lblNotAvailableGetAndDelete);
             this.tabPage9.Location = new System.Drawing.Point(4, 22);
             this.tabPage9.Name = "tabPage9";
-            this.tabPage9.Size = new System.Drawing.Size(688, 300);
+            this.tabPage9.Size = new System.Drawing.Size(540, 300);
             this.tabPage9.TabIndex = 1;
             this.tabPage9.Text = "Request body";
-            this.tabPage9.UseVisualStyleBackColor = true;
             // 
             // txtJsonBody
             // 
@@ -205,18 +223,19 @@
             this.txtJsonBody.Multiline = true;
             this.txtJsonBody.Name = "txtJsonBody";
             this.txtJsonBody.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtJsonBody.Size = new System.Drawing.Size(688, 275);
+            this.txtJsonBody.Size = new System.Drawing.Size(540, 275);
             this.txtJsonBody.TabIndex = 1;
             this.txtJsonBody.WordWrap = false;
             // 
             // stripBody
             // 
+            this.stripBody.BackColor = System.Drawing.Color.WhiteSmoke;
             this.stripBody.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnOpenBody,
             this.btnSaveBody});
             this.stripBody.Location = new System.Drawing.Point(0, 0);
             this.stripBody.Name = "stripBody";
-            this.stripBody.Size = new System.Drawing.Size(688, 25);
+            this.stripBody.Size = new System.Drawing.Size(540, 25);
             this.stripBody.TabIndex = 4;
             this.stripBody.Text = "toolStrip1";
             // 
@@ -240,16 +259,26 @@
             this.btnSaveBody.Text = "Save body";
             this.btnSaveBody.Click += new System.EventHandler(this.btnSaveBody_Click);
             // 
+            // lblNotAvailableGetAndDelete
+            // 
+            this.lblNotAvailableGetAndDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.lblNotAvailableGetAndDelete.Location = new System.Drawing.Point(0, 0);
+            this.lblNotAvailableGetAndDelete.Name = "lblNotAvailableGetAndDelete";
+            this.lblNotAvailableGetAndDelete.Size = new System.Drawing.Size(540, 300);
+            this.lblNotAvailableGetAndDelete.TabIndex = 5;
+            this.lblNotAvailableGetAndDelete.Text = "Not available for GET and DELETE";
+            this.lblNotAvailableGetAndDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // tabPage8
             // 
+            this.tabPage8.BackColor = System.Drawing.Color.LightGray;
             this.tabPage8.Controls.Add(this.txtHeaders);
             this.tabPage8.Controls.Add(this.toolStrip2);
             this.tabPage8.Location = new System.Drawing.Point(4, 22);
             this.tabPage8.Name = "tabPage8";
-            this.tabPage8.Size = new System.Drawing.Size(688, 300);
+            this.tabPage8.Size = new System.Drawing.Size(540, 300);
             this.tabPage8.TabIndex = 0;
             this.tabPage8.Text = "Headers";
-            this.tabPage8.UseVisualStyleBackColor = true;
             // 
             // txtHeaders
             // 
@@ -259,7 +288,7 @@
             this.txtHeaders.Multiline = true;
             this.txtHeaders.Name = "txtHeaders";
             this.txtHeaders.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtHeaders.Size = new System.Drawing.Size(688, 275);
+            this.txtHeaders.Size = new System.Drawing.Size(540, 275);
             this.txtHeaders.TabIndex = 0;
             this.txtHeaders.Text = "#Enter custom headers hereunder\r\n#format is \"header name\",\"header value\"\r\n#sample" +
     " here for user-agent\r\n\"User-Agent\",\"Call Json\"\r\n";
@@ -272,7 +301,7 @@
             this.btnSaveHeaders});
             this.toolStrip2.Location = new System.Drawing.Point(0, 0);
             this.toolStrip2.Name = "toolStrip2";
-            this.toolStrip2.Size = new System.Drawing.Size(688, 25);
+            this.toolStrip2.Size = new System.Drawing.Size(540, 25);
             this.toolStrip2.TabIndex = 5;
             this.toolStrip2.Text = "toolStrip2";
             // 
@@ -298,14 +327,14 @@
             // 
             // tabResults
             // 
+            this.tabResults.BackColor = System.Drawing.Color.LightGray;
             this.tabResults.Controls.Add(this.txtResults);
             this.tabResults.Controls.Add(this.toolStrip3);
             this.tabResults.Location = new System.Drawing.Point(4, 22);
             this.tabResults.Name = "tabResults";
-            this.tabResults.Size = new System.Drawing.Size(688, 300);
+            this.tabResults.Size = new System.Drawing.Size(540, 300);
             this.tabResults.TabIndex = 2;
             this.tabResults.Text = "Results";
-            this.tabResults.UseVisualStyleBackColor = true;
             // 
             // txtResults
             // 
@@ -315,7 +344,7 @@
             this.txtResults.Name = "txtResults";
             this.txtResults.ReadOnly = true;
             this.txtResults.ScrollBars = System.Windows.Forms.ScrollBars.Both;
-            this.txtResults.Size = new System.Drawing.Size(688, 275);
+            this.txtResults.Size = new System.Drawing.Size(540, 275);
             this.txtResults.TabIndex = 0;
             this.txtResults.WordWrap = false;
             // 
@@ -325,7 +354,7 @@
             this.btnSaveResults});
             this.toolStrip3.Location = new System.Drawing.Point(0, 0);
             this.toolStrip3.Name = "toolStrip3";
-            this.toolStrip3.Size = new System.Drawing.Size(688, 25);
+            this.toolStrip3.Size = new System.Drawing.Size(540, 25);
             this.toolStrip3.TabIndex = 6;
             this.toolStrip3.Text = "toolStrip3";
             // 
@@ -339,22 +368,119 @@
             this.btnSaveResults.Text = "Save results";
             this.btnSaveResults.Click += new System.EventHandler(this.btnSaveResults_Click);
             // 
-            // lblNotAvailableGetAndDelete
+            // splitContainer1
             // 
-            this.lblNotAvailableGetAndDelete.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.lblNotAvailableGetAndDelete.Location = new System.Drawing.Point(0, 0);
-            this.lblNotAvailableGetAndDelete.Name = "lblNotAvailableGetAndDelete";
-            this.lblNotAvailableGetAndDelete.Size = new System.Drawing.Size(688, 300);
-            this.lblNotAvailableGetAndDelete.TabIndex = 5;
-            this.lblNotAvailableGetAndDelete.Text = "Not available for GET and DELETE";
-            this.lblNotAvailableGetAndDelete.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.splitContainer1.Location = new System.Drawing.Point(0, 0);
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.tabs);
+            this.splitContainer1.Panel1.Controls.Add(this.pnlAddress);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.trvFavorite);
+            this.splitContainer1.Panel2.Controls.Add(this.toolStrip1);
+            this.splitContainer1.Size = new System.Drawing.Size(696, 378);
+            this.splitContainer1.SplitterDistance = 548;
+            this.splitContainer1.TabIndex = 1;
+            // 
+            // trvFavorite
+            // 
+            this.trvFavorite.AllowDrop = true;
+            this.trvFavorite.BackColor = System.Drawing.SystemColors.Control;
+            this.trvFavorite.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.trvFavorite.ImageIndex = 0;
+            this.trvFavorite.ImageList = this.imageList1;
+            this.trvFavorite.LabelEdit = true;
+            this.trvFavorite.Location = new System.Drawing.Point(0, 25);
+            this.trvFavorite.Name = "trvFavorite";
+            this.trvFavorite.SelectedImageIndex = 0;
+            this.trvFavorite.ShowNodeToolTips = true;
+            this.trvFavorite.Size = new System.Drawing.Size(144, 353);
+            this.trvFavorite.TabIndex = 0;
+            this.trvFavorite.AfterLabelEdit += new System.Windows.Forms.NodeLabelEditEventHandler(this.trvFavorite_AfterLabelEdit);
+            this.trvFavorite.ItemDrag += new System.Windows.Forms.ItemDragEventHandler(this.trvFavorite_ItemDrag);
+            this.trvFavorite.DragDrop += new System.Windows.Forms.DragEventHandler(this.trvFavorite_DragDrop);
+            this.trvFavorite.DragEnter += new System.Windows.Forms.DragEventHandler(this.trvFavorite_DragEnter);
+            this.trvFavorite.DoubleClick += new System.EventHandler(this.trvFavorite_DoubleClick);
+            this.trvFavorite.KeyUp += new System.Windows.Forms.KeyEventHandler(this.trvFavorite_KeyUp);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "Folder_grey_16x.png");
+            this.imageList1.Images.SetKeyName(1, "Favorite_16xMD.png");
+            // 
+            // toolStrip1
+            // 
+            this.toolStrip1.BackColor = System.Drawing.Color.Transparent;
+            this.toolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.btnAddFavorite,
+            this.toolStripSeparator2,
+            this.btnCreateFolder,
+            this.btnEdit,
+            this.btnDeleteFavorite});
+            this.toolStrip1.Location = new System.Drawing.Point(0, 0);
+            this.toolStrip1.Name = "toolStrip1";
+            this.toolStrip1.Size = new System.Drawing.Size(144, 25);
+            this.toolStrip1.TabIndex = 1;
+            this.toolStrip1.Text = "toolStrip1";
+            // 
+            // btnAddFavorite
+            // 
+            this.btnAddFavorite.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnAddFavorite.Image = global::CallJson.Images.AddtoFavorites_16x;
+            this.btnAddFavorite.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnAddFavorite.Name = "btnAddFavorite";
+            this.btnAddFavorite.Size = new System.Drawing.Size(23, 22);
+            this.btnAddFavorite.Text = "Add favorite";
+            this.btnAddFavorite.Click += new System.EventHandler(this.btnAddFavorite_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnCreateFolder
+            // 
+            this.btnCreateFolder.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnCreateFolder.Image = global::CallJson.Images.AddFolder_16x;
+            this.btnCreateFolder.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnCreateFolder.Name = "btnCreateFolder";
+            this.btnCreateFolder.Size = new System.Drawing.Size(23, 22);
+            this.btnCreateFolder.Text = "Add folder";
+            this.btnCreateFolder.Click += new System.EventHandler(this.btnCreateFolder_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnEdit.Image = global::CallJson.Images.Edit_16x;
+            this.btnEdit.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(23, 22);
+            this.btnEdit.Text = "Edit favorite";
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnDeleteFavorite
+            // 
+            this.btnDeleteFavorite.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.btnDeleteFavorite.Image = global::CallJson.Images.Clearallrequests_8816;
+            this.btnDeleteFavorite.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnDeleteFavorite.Name = "btnDeleteFavorite";
+            this.btnDeleteFavorite.Size = new System.Drawing.Size(23, 22);
+            this.btnDeleteFavorite.Text = "Delete";
+            this.btnDeleteFavorite.Click += new System.EventHandler(this.btnDeleteFavorite_Click);
             // 
             // ControlCallJson
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.tabs);
-            this.Controls.Add(this.pnlAddress);
+            this.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.Controls.Add(this.splitContainer1);
             this.Name = "ControlCallJson";
             this.Size = new System.Drawing.Size(696, 378);
             this.Load += new System.EventHandler(this.ControlCallJson_Load);
@@ -375,6 +501,13 @@
             this.tabResults.PerformLayout();
             this.toolStrip3.ResumeLayout(false);
             this.toolStrip3.PerformLayout();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            this.splitContainer1.Panel2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
+            this.toolStrip1.ResumeLayout(false);
+            this.toolStrip1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -407,5 +540,14 @@
         private System.Windows.Forms.ToolStrip toolStrip3;
         private System.Windows.Forms.ToolStripButton btnSaveResults;
         private System.Windows.Forms.Label lblNotAvailableGetAndDelete;
+        private System.Windows.Forms.SplitContainer splitContainer1;
+        private System.Windows.Forms.TreeView trvFavorite;
+        private System.Windows.Forms.ToolStrip toolStrip1;
+        private System.Windows.Forms.ToolStripButton btnAddFavorite;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripButton btnCreateFolder;
+        private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.ToolStripButton btnEdit;
+        private System.Windows.Forms.ToolStripButton btnDeleteFavorite;
     }
 }

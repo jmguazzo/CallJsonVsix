@@ -57,6 +57,14 @@
     <Compile Include="ControlCallJson.Designer.cs">
       <DependentUpon>ControlCallJson.cs</DependentUpon>
     </Compile>
+    <Compile Include="Favorite.cs" />
+    <Compile Include="FavoriteManager.cs" />
+    <Compile Include="frmManageFavorite.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmManageFavorite.Designer.cs">
+      <DependentUpon>frmManageFavorite.cs</DependentUpon>
+    </Compile>
     <Compile Include="Images.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -70,11 +78,12 @@
       <DependentUpon>ToolWindowControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="ToolWindowPackage.cs" />
-    <Compile Include="VSPackage.Designer.cs">
+    <Compile Include="VSPackage.en-US.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VSPackage.resx</DependentUpon>
     </Compile>
+    <Compile Include="XElementExtension.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Key.snk" />
@@ -84,6 +93,12 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Resources\VSO_Folder_hoverblue_16x.png" />
+    <Content Include="Resources\VSO_Folder_whiteNoHalo_16x.png" />
+    <VSCTCompile Include="ToolWindowPackage.vsct">
+      <SubType>Designer</SubType>
+      <ResourceName>Menus.ctmenu</ResourceName>
+    </VSCTCompile>
     <None Include="Resources\NewClass_16x.png" />
     <None Include="Resources\OpenFolder_32x.png" />
     <Content Include="hockey-mask.png">
@@ -98,16 +113,25 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
       <IncludeInVSIX>true</IncludeInVSIX>
     </Content>
+    <Content Include="Resources\AddFolder_16x.png" />
+    <Content Include="Resources\AddtoFavorites_16x.png" />
+    <None Include="Resources\Edit_16x.png" />
+    <None Include="Resources\Clearallrequests_8816.png" />
+    <Content Include="Resources\F12_Folder_28x.png" />
+    <Content Include="Resources\Favorite_16x.png" />
+    <Content Include="Resources\Favorite_16xMD.png" />
+    <Content Include="Resources\Favorite_16xSM.png" />
+    <Content Include="Resources\Folder.ico" />
+    <Content Include="Resources\Folder_16x.png" />
+    <Content Include="Resources\Folder_16x_24.bmp" />
+    <Content Include="Resources\Folder_16x_Green24.bmp" />
+    <Content Include="Resources\Folder_32x.png" />
+    <Content Include="Resources\Folder_grey_16x.png" />
     <Content Include="Resources\hockey-mask_16.png" />
     <Content Include="Resources\Package.ico" />
     <None Include="Resources\Run_32x.png" />
     <None Include="Resources\Save_32x.png" />
-    <Content Include="Resources\ToolWindowCommand.png" />
     <Content Include="Resources\ToolWindowPackage.ico" />
-    <VSCTCompile Include="ToolWindowPackage.vsct">
-      <ResourceName>Menus.ctmenu</ResourceName>
-      <SubType>Designer</SubType>
-    </VSCTCompile>
   </ItemGroup>
   <ItemGroup>
     <Reference Include="EnvDTE, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
@@ -223,6 +247,7 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xaml" />
     <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
@@ -230,15 +255,16 @@
     <EmbeddedResource Include="ControlCallJson.resx">
       <DependentUpon>ControlCallJson.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmManageFavorite.resx">
+      <DependentUpon>frmManageFavorite.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Images.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Images.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <EmbeddedResource Include="VSPackage.resx">
       <MergeWithCTO>true</MergeWithCTO>
-      <ManifestResourceName>VSPackage</ManifestResourceName>
-      <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>VSPackage.Designer.cs</LastGenOutput>
+      <LogicalName>VSPackage.en-US.Resources</LogicalName>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

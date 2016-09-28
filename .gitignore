@@ -5,3 +5,5 @@ packages/
 *.vsix
 *.suo
 /TestUserControl/bin/Debug
+/TestUserControl/bin/Release
+/TestUserControl/obj/Release

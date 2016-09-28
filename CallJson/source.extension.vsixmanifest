@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="CallJson.Jean-Marc Guazzo.fc884826-7bb8-4585-b091-1a059be7b940" Version="1.0" Language="en-US" Publisher="Jean-Marc Guazzo" />
+    <Identity Id="CallJson.Jean-Marc Guazzo.fc884826-7bb8-4585-b091-1a059be7b940" Version="1.1" Language="en-US" Publisher="Jean-Marc Guazzo" />
     <DisplayName>CallJson</DisplayName>
-    <Description xml:space="preserve">Tool for calling JSON webservices. Allow to make GET, PUT, POST and DELETE request.
+    <Description xml:space="preserve">Tool for calling Rest JSON webservices. Allow to make GET, PUT, POST and DELETE request.
 Logo from http://www.freepik.com/.</Description>
     <MoreInfo>https://github.com/jmguazzo/CallJsonVsix</MoreInfo>
     <License>licence.txt</License>

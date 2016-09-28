@@ -63,6 +63,46 @@ namespace CallJson {
         /// <summary>
         ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap AddFolder_16x {
+            get {
+                object obj = ResourceManager.GetObject("AddFolder_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap AddtoFavorites_16x {
+            get {
+                object obj = ResourceManager.GetObject("AddtoFavorites_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Clearallrequests_8816 {
+            get {
+                object obj = ResourceManager.GetObject("Clearallrequests_8816", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Edit_16x {
+            get {
+                object obj = ResourceManager.GetObject("Edit_16x", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une ressource localisée de type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap NewClass_16x {
             get {
                 object obj = ResourceManager.GetObject("NewClass_16x", resourceCulture);
