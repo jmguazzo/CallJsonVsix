@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
   <Metadata>
-    <Identity Id="CallJson.Jean-Marc Guazzo.fc884826-7bb8-4585-b091-1a059be7b940" Version="1.1" Language="en-US" Publisher="Jean-Marc Guazzo" />
+    <Identity Id="CallJson.Jean-Marc Guazzo.fc884826-7bb8-4585-b091-1a059be7b940" Version="1.2" Language="en-US" Publisher="Jean-Marc Guazzo" />
     <DisplayName>CallJson</DisplayName>
     <Description xml:space="preserve">Tool for calling Rest JSON webservices. Allow to make GET, PUT, POST and DELETE request.
 Logo from http://www.freepik.com/.</Description>
@@ -11,7 +11,9 @@ Logo from http://www.freepik.com/.</Description>
     <PreviewImage>hockey-mask.png</PreviewImage>
   </Metadata>
   <Installation>
-    <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[14.0]" />
+    <InstallationTarget Version="[14.0,15.0)" Id="Microsoft.VisualStudio.Pro" />
+    <InstallationTarget Version="[14.0,15.0)" Id="Microsoft.VisualStudio.Community" />
+    <InstallationTarget Version="[14.0,15.0)" Id="Microsoft.VisualStudio.Enterprise" />
   </Installation>
   <Dependencies>
     <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />

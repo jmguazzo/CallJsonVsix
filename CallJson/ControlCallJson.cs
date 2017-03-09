@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace CallJson
 {
@@ -74,9 +75,13 @@ namespace CallJson
         private void Execute()
         {
             Verbs verb = GetVerbFromSelectedButton();
+
             tabs.SelectedTab = tabResults;
+
             EnableButtons(enabled: false);
+
             string result = string.Empty;
+
             try
             {
                 Dictionary<string, string> headers = GenerateHeaders();
@@ -146,8 +151,8 @@ namespace CallJson
 
         private void InitFavorite()
         {
-            this.favoriteManager = new FavoriteManager();
-            favoriteManager.FillTreeView(trvFavorite);
+            this.favoriteManager = new FavoriteManager(this,trvFavorite);
+            favoriteManager.FillTreeView();
         }
 
         private void btnExec_Click(object sender, EventArgs e)
@@ -157,26 +162,22 @@ namespace CallJson
 
         private Verbs GetVerbFromSelectedButton()
         {
-            if (btnGET.Checked)
+            var defaultVerb = Verbs.GET;
+
+            if (btnPOST.Checked)
             {
-                return Verbs.GET;
-            }
-            else if (btnPOST.Checked)
-            {
-                return Verbs.POST;
+                defaultVerb = Verbs.POST;
             }
             else if (btnPUT.Checked)
             {
-                return Verbs.PUT;
+                defaultVerb = Verbs.PUT;
             }
             else if (btnDELETE.Checked)
             {
-                return Verbs.DELETE;
+                defaultVerb = Verbs.DELETE;
             }
-            else
-            {
-                return Verbs.GET;
-            }
+
+            return defaultVerb;
         }
 
         private void cmboURI_KeyDown(object sender, KeyEventArgs e)
@@ -265,10 +266,7 @@ namespace CallJson
             SaveFileContent(txtResults.Text, JSON_FILTER);
         }
 
-        private void btnCreateJsonClass_Click(object sender, EventArgs e)
-        {
-        }
-
+      
         private void trvFavorite_DoubleClick(object sender, EventArgs e)
         {
             if (trvFavorite.SelectedNode == null) return;
@@ -285,7 +283,7 @@ namespace CallJson
             if (trvFavorite.SelectedNode == null) return;
             var favorite = trvFavorite.SelectedNode.Tag as Favorite;
 
-            if (favorite == null) return ;
+            if (favorite == null) return;
 
             if (favorite.IsFolder)
             {
@@ -305,7 +303,7 @@ namespace CallJson
 
         private void SaveFavorite()
         {
-            favoriteManager.SaveTreeView(trvFavorite);
+            favoriteManager.SaveTreeView();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -327,12 +325,9 @@ namespace CallJson
 
         private void trvFavorite_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.F2)
+            if (e.KeyCode == Keys.F2 && !trvFavorite.SelectedNode.IsEditing)
             {
-                if (!trvFavorite.SelectedNode.IsEditing)
-                {
-                    trvFavorite.SelectedNode.BeginEdit();
-                }
+                trvFavorite.SelectedNode.BeginEdit();
             }
 
         }
@@ -407,9 +402,9 @@ namespace CallJson
 
                 newNode = (TreeNode)e.Data.GetData("System.Windows.Forms.TreeNode");
 
-                if (destination.TreeView == newNode.TreeView && 
-                    ((Favorite)destination.Tag).IsFolder && 
-                    !destination.FullPath.StartsWith( newNode.FullPath))
+                if (destination.TreeView == newNode.TreeView &&
+                    ((Favorite)destination.Tag).IsFolder &&
+                    !destination.FullPath.StartsWith(newNode.FullPath))
                 {
                     destination.Nodes.Add((TreeNode)newNode.Clone());
                     trvFavorite.Nodes.Remove(newNode);
