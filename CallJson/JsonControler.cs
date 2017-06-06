@@ -14,16 +14,12 @@ namespace CallJson
         {
             internal static HttpResponseMessage Post(HttpClient client, string uri, string body)
             {
-                return client.PostAsync(uri, new StringContent(
-                         JsonConvert.SerializeObject(body).ToString(),
-                         Encoding.UTF8, "application/json")).Result;
+                return client.PostAsync(uri, new StringContent(body,Encoding.UTF8, "application/json")).Result;
             }
 
             internal static HttpResponseMessage Put(HttpClient client, string uri, string body)
             {
-                return client.PutAsync(uri, new StringContent(
-                         JsonConvert.SerializeObject(body).ToString(),
-                         Encoding.UTF8, "application/json")).Result;
+                return client.PutAsync(uri, new StringContent(body,Encoding.UTF8, "application/json")).Result;
             }
 
             internal static HttpResponseMessage Delete(HttpClient client, string uri, string body)
